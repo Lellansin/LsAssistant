@@ -1,0 +1,80 @@
+[
+    {
+        "caption": "Tools",
+        "mnemonic": "n",
+        "id": "tools",
+        "children":
+        [
+            {
+                "caption": "LsAssistant 编程助手",
+                "mnemonic": "L",
+                "id": "ls-assistant",
+                "children":
+                [
+                    {
+                        "command": "open_file",
+                        "args": {"file": "${packages}/LsAssistant/README.md"},
+                        "caption": "使用帮助"
+                    },
+                    { "caption": "-" },
+                    {
+                        "command": "open_file",
+                        "args": {"file": "${packages}/LsAssistant/LsAssistant.sublime-settings"},
+                        "caption": "【功能】默认设置"
+                    },
+                    { "caption": "-" },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/LsAssistant/Default (OSX).sublime-keymap",
+                            "platform": "OSX"
+                        },
+                        "caption": "【快捷键】默认设置"
+                    },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/LsAssistant/Default (Linux).sublime-keymap",
+                            "platform": "Linux"
+                        },
+                        "caption": "【快捷键】默认设置"
+                    },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/LsAssistant/Default (Windows).sublime-keymap",
+                            "platform": "Windows"
+                        },
+                        "caption": "【快捷键】默认设置"
+                    },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/User/Default (OSX).sublime-keymap",
+                            "platform": "OSX"
+                        },
+                        "caption": "【快捷键】自定义设置"
+                    },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/User/Default (Linux).sublime-keymap",
+                            "platform": "Linux"
+                        },
+                        "caption": "【快捷键】自定义设置"
+                    },
+                    {
+                        "command": "open_file",
+                        "args": {
+                            "file": "${packages}/User/Default (Windows).sublime-keymap",
+                            "platform": "Windows"
+                        },
+                        "caption": "【快捷键】自定义设置"
+                    },
+                    { "caption": "-" }
+
+                ]
+            }
+        ]
+    }
+]
