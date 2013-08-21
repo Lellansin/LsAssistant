@@ -1,0 +1,14 @@
+[
+	{
+		"keys": ["alt+l"],
+		"command": "ls_assistant"
+	},
+	{
+		"keys": ["ctrl+alt+o"],
+		"command": "open_cmd"
+	},
+	{
+		"keys": ["f5"],
+		"command": "open_cmd"
+	}
+]

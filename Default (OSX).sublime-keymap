@@ -1,0 +1,6 @@
+[
+	{
+		"keys": ["alt+l"],
+		"command": "ls_assistant"
+	}
+]
