@@ -1,7 +1,8 @@
 import sublime, sublime_plugin
-import os;
+import os, urllib2;
 
-class OpenCmdCommand(sublime_plugin.TextCommand):
+
+class LsOpenCmdCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 
 		cwd = os.getcwd();
@@ -13,26 +14,41 @@ class OpenCmdCommand(sublime_plugin.TextCommand):
 		
 		if(platform == 'windows'):
 			settings = sublime.load_settings('LsAssistant.sublime-settings')
-			compiler_path = settings.get('gcc_path')
-			# get file directory
+			compiler_path = settings.get('compiler_path')
 			path = path[0:path.rfind('\\')];
-			# cd directory and start a cmd
 			command = path[0:2] + ' && ' + 'cd "' + path + '" && start ' + compiler_path + ' '
-			# sublime.message_dialog(command)
 			os.system(command)
 		elif(platform == 'linux'):
-			# get file directory
 			path = path[0:path.rfind('/')];
-			# cd directory and start a terminal
 			command = 'cd ' + path + ' && gnome-terminal'
 			os.system(command)
 		else:
 			sublime.error_message('Sorry, this plugin doestn\'t support your system now. :(')
 
+
 class LsAssistant(sublime_plugin.TextCommand):
 	def run(self, edit):
 		sublime.message_dialog("Lellansin's assistant")
 		# self.view.insert(edit, 0, "Hello, World!")
+
+
+class LsUpdate(sublime_plugin.WindowCommand):
+	def run(self):
+		# pf='Package Control.sublime-package';
+		github = 'https://github.com/Lellansin/LsAssistant/raw/master/'
+		packages_path = sublime.packages_path() + '\\LsAssistant\\';
+		obj = { 
+			"version" : 0.1,
+			"files"  : ["Default (Linux).sublime-keymap","Default (OSX).sublime-keymap","Default (Windows).sublime-keymap","LsAssistant.py","LsAssistant.pyc","LsAssistant.sublime-settings","Main.sublime-menu"],
+			"msg" 	: "更新模块"
+		}
+		# os.makedirs(ipp)
+		content = urllib2.urlopen(github + obj["files"][0].replace(' ', '%20')).read()
+		txt = eval(content)
+		# open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
+		print txt
+		sublime.message_dialog(str(txt[0].command))
+		
 
 # class EventListener(sublime_plugin.EventListener):
     # def on_load(self, view):

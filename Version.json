@@ -1,0 +1,5 @@
+{ 
+	"version": 0.1,
+	"files"  : ["Default (Linux).sublime-keymap","Default (OSX).sublime-keymap","Default (Windows).sublime-keymap","LsAssistant.py","LsAssistant.pyc","LsAssistant.sublime-settings","Main.sublime-menu"],
+	"msg"    : "更新模块"
+}
