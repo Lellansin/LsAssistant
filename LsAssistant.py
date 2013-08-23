@@ -2,6 +2,9 @@ import sublime, sublime_plugin
 import os, urllib2
 import json
 
+import thread
+import time
+
 
 class LsOpenCmdCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -40,22 +43,26 @@ def getFile(name):
 
 class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
-		# pf='Package Control.sublime-package';
-		#packages_path = sublime.packages_path() + '\\LsAssistant\\';
-		packages_path = 'c:\\python\\test';
-		os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
-		string = getFile("Version.json")
-		content = json.loads(string);
-		length = len(content['files'])
-		print "length is " + str(length)
-		for x in xrange(0,length):
-			print("downloading : " + content['files'][x])
-			open(os.path.join(packages_path, content['files'][x]), 'wb').write(getFile(content['files'][x]))
-			print("complete!")
-		# print type(content)
-		# print content
-		# sublime.message_dialog(str(content['version']));
-		#open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
+		# sublime.set_timeout(update, 100)
+		thread.start_new(update, ())
+
+def update():
+	#packages_path = 'c:\\python\\test';
+	packages_path = sublime.packages_path() + '\\LsAssistant\\test';
+	os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
+	string = getFile("Version.json")
+	content = json.loads(string);
+	length = len(content['files'])
+	# print "length is " + str(length)
+	for files in content['files']:
+		print("downloading : " + files)
+		open(os.path.join(packages_path, files), 'wb').write(getFile(files))
+		print("complete!")
+	sublime.message_dialog("update ok!")
+	# print type(content)
+	# print content
+	# sublime.message_dialog(str(content['version']));
+	#open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
 		
 
 # class EventListener(sublime_plugin.EventListener):
