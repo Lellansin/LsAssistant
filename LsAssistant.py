@@ -45,6 +45,7 @@ class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
 		# sublime.set_timeout(update, 100)
 		thread.start_new(update, ())
+		sublime.message_dialog("update thread has created, if it shows err : 'Error trying to parse file', it's just ok!")
 
 def update():
 	#packages_path = 'c:\\python\\test';
