@@ -1,9 +1,7 @@
 import sublime, sublime_plugin
 import os, urllib2
 import json
-
-import thread
-import time
+import thread, time
 
 
 class LsOpenCmdCommand(sublime_plugin.TextCommand):
@@ -30,10 +28,16 @@ class LsOpenCmdCommand(sublime_plugin.TextCommand):
 			sublime.error_message('Sorry, this plugin doestn\'t support your system now. :(')
 
 
-class LsAssistant(sublime_plugin.TextCommand):
-	def run(self, edit):
-		sublime.message_dialog("Lellansin's assistant")
+class LsAssistant(sublime_plugin.WindowCommand):
+	def run(self):
+		# sublime.status_message("string")
+		# self.view.set_status('mode', 'hello world')
+		self.window.run_command("hide_panel", {"cancel": "true"})
+		# self.window.run_command("show_panel", {"panel": "console", "toggle": "true"})
+		# sublime.log_input(1)
+		# sublime.message_dialog("Lellansin's assistant")
 		# self.view.insert(edit, 0, "Hello, World!")
+
 
 def getFile(name):
 	github = 'https://github.com/Lellansin/LsAssistant/raw/master/'
@@ -43,21 +47,24 @@ def getFile(name):
 
 class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
-		thread.start_new(update, ())
+		print('\n\n\n\n\n\n\n\n\n\n')
+		self.window.run_command("show_panel", {"panel": "console"})
 		sublime.message_dialog("update thread has created, it make take 30 sec.")
+		thread.start_new(update, ())
 
 def update():
 	packages_path = sublime.packages_path() + '\\LsAssistant\\test';
 	os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
 	string = getFile("Version.json")
 	content = json.loads(string);
-	length = len(content['files'])
+	# length = len(content['files'])
 	for files in content['files']:
-		print("downloading : " + files)
+		print("File name : " + files)
 		content = getFile(files)
 		open(os.path.join(packages_path, files), 'wb').write(content)
-		print("complete!")
-	sublime.message_dialog("update ok!")
+		print("Complete!")
+	sublime.message_dialog("Update ok!")
+	# sublime.active_window().run_command("hide_panel", {"cancel": "true"})
 	# sublime.message_dialog(str(content['version']));
 		
 
