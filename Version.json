@@ -1,5 +1,13 @@
-{ 
+{
 	"version": 0.1,
-	"files"  : ["Default (Linux).sublime-keymap","Default (OSX).sublime-keymap","Default (Windows).sublime-keymap","LsAssistant.py","LsAssistant.pyc","LsAssistant.sublime-settings","Main.sublime-menu"],
-	"msg"    : "update module"
+	"files": [
+		"Default (OSX).sublime-keymap",
+		"Default (Linux).sublime-keymap",
+		"Default (Windows).sublime-keymap",
+		"LsAssistant.py",
+		"LsAssistant.sublime-settings",
+		"Main.sublime-menu",
+		"readme.md"
+	],
+	"msg": "update module"
 }

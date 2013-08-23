@@ -1,5 +1,6 @@
 import sublime, sublime_plugin
-import os, urllib2;
+import os, urllib2
+import json
 
 
 class LsOpenCmdCommand(sublime_plugin.TextCommand):
@@ -33,25 +34,28 @@ class LsAssistant(sublime_plugin.TextCommand):
 
 def getFile(name):
 	github = 'https://github.com/Lellansin/LsAssistant/raw/master/'
+	print("Downloading " + github + name)
 	content = urllib2.urlopen(github + name.replace(' ', '%20')).read()
 	return content
 
 class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
 		# pf='Package Control.sublime-package';
-		
-		# packages_path = sublime.packages_path() + '\\LsAssistant\\';
-		# obj = { 
-		# 	"version" : 0.1,
-		# 	"files"  : ["Default (Linux).sublime-keymap","Default (OSX).sublime-keymap","Default (Windows).sublime-keymap","LsAssistant.py","LsAssistant.pyc","LsAssistant.sublime-settings","Main.sublime-menu"],
-		# }
-		# 
-		# txt = eval(content)
-		# # open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
-		# print txt
-		content = getFile("Version.json");
-		
-		sublime.message_dialog()
+		#packages_path = sublime.packages_path() + '\\LsAssistant\\';
+		packages_path = 'c:\\python\\test';
+		os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
+		string = getFile("Version.json")
+		content = json.loads(string);
+		length = len(content['files'])
+		print "length is " + str(length)
+		for x in xrange(0,length):
+			print("downloading : " + content['files'][x])
+			open(os.path.join(packages_path, content['files'][x]), 'wb').write(getFile(content['files'][x]))
+			print("complete!")
+		# print type(content)
+		# print content
+		# sublime.message_dialog(str(content['version']));
+		#open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
 		
 
 # class EventListener(sublime_plugin.EventListener):
