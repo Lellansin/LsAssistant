@@ -43,27 +43,22 @@ def getFile(name):
 
 class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
-		# sublime.set_timeout(update, 100)
 		thread.start_new(update, ())
-		sublime.message_dialog("update thread has created, if it shows err : 'Error trying to parse file', it's just ok!")
+		sublime.message_dialog("update thread has created, it make take 30 sec.")
 
 def update():
-	#packages_path = 'c:\\python\\test';
 	packages_path = sublime.packages_path() + '\\LsAssistant\\test';
 	os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
 	string = getFile("Version.json")
 	content = json.loads(string);
 	length = len(content['files'])
-	# print "length is " + str(length)
 	for files in content['files']:
 		print("downloading : " + files)
-		open(os.path.join(packages_path, files), 'wb').write(getFile(files))
+		content = getFile(files)
+		open(os.path.join(packages_path, files), 'wb').write(content)
 		print("complete!")
 	sublime.message_dialog("update ok!")
-	# print type(content)
-	# print content
 	# sublime.message_dialog(str(content['version']));
-	#open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
 		
 
 # class EventListener(sublime_plugin.EventListener):
