@@ -34,12 +34,10 @@ class LsAssistant(sublime_plugin.TextCommand):
 def getFile(name):
 	github = 'https://github.com/Lellansin/LsAssistant/raw/master/'
 	content = urllib2.urlopen(github + name.replace(' ', '%20')).read()
-	sublime.message_dialog(content)
 	return content
 
 class LsUpdate(sublime_plugin.WindowCommand):
 	def run(self):
-		getFile("Version.json")
 		# pf='Package Control.sublime-package';
 		
 		# packages_path = sublime.packages_path() + '\\LsAssistant\\';
@@ -51,7 +49,9 @@ class LsUpdate(sublime_plugin.WindowCommand):
 		# txt = eval(content)
 		# # open(os.path.join(packages_path, obj["files"][0]), 'w').write(content)
 		# print txt
-#		sublime.message_dialog(getFile("Version.json"))
+		content = getFile("Version.json");
+		
+		sublime.message_dialog()
 		
 
 # class EventListener(sublime_plugin.EventListener):
