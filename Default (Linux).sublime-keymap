@@ -2,5 +2,17 @@
 	{
 		"keys": ["alt+l"],
 		"command": "ls_assistant"
+	},
+	{
+		"keys": ["ctrl+alt+o"],
+		"command": "ls_open_cmd"
+	},
+	{
+		"keys": ["f5"],
+		"command": "ls_open_cmd"
+	},
+	{
+		"keys": ["ctrl+q"],
+		"command": "ls_update"
 	}
 ]
