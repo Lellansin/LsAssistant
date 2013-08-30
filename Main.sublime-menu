@@ -16,6 +16,10 @@
                         "args": {"file": "${packages}/LsAssistant/README.md"},
                         "caption": "使用帮助"
                     },
+                    {
+                        "command": "ls_update",
+                        "caption": "插件更新"
+                    },
                     { "caption": "-" },
                     {
                         "command": "open_file",
@@ -72,7 +76,6 @@
                         "caption": "【快捷键】自定义设置"
                     },
                     { "caption": "-" }
-
                 ]
             }
         ]
