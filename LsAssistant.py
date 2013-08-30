@@ -53,7 +53,7 @@ class LsUpdate(sublime_plugin.WindowCommand):
 		thread.start_new(update, ())
 
 def update():
-	packages_path = sublime.packages_path() + '\\LsAssistant\\test';
+	packages_path = sublime.packages_path() + '\\LsAssistant\\';
 	os.makedirs(packages_path) if not os.path.exists(packages_path) else None;
 	string = getFile("Version.json")
 	content = json.loads(string);
