@@ -10,9 +10,5 @@
 	{
 		"keys": ["f5"],
 		"command": "ls_open_cmd"
-	},
-	{
-		"keys": ["ctrl+q"],
-		"command": "ls_update"
 	}
 ]
