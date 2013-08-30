@@ -14,7 +14,7 @@ class LsOpenCmdCommand(sublime_plugin.TextCommand):
 		if path is None:
 			sublime.message_dialog("There is no path to open, please save the file first!");		
 		
-		if(platform == 'windows'):
+		if(platform == 'windows'):			
 			settings = sublime.load_settings('LsAssistant.sublime-settings')
 			compiler_path = settings.get('compiler_path')
 			path = path[0:path.rfind('\\')];
@@ -71,3 +71,6 @@ def update():
 # class EventListener(sublime_plugin.EventListener):
     # def on_load(self, view):
         # sublime.message_dialog("it's on_load!")
+
+def echo(str):
+	sublime.message_dialog(str)
