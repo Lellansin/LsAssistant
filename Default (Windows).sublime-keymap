@@ -1,16 +1,12 @@
 [
 	{
-		"keys": ["alt+a"],
-		"command": "ls_assistant",
-		"args": {"amount": 1.0 }
-	},
-	{
 		"keys": ["ctrl+alt+o"],
 		"command": "ls_open_cmd",
-		"args": {"amount": 1.0 }
+		"args": { "auto_run": false } // 不自动运行脚本
 	},
 	{
 		"keys": ["f5"],
-		"command": "ls_open_cmd"
+		"command": "ls_open_cmd",
+		"args": { "auto_run": true } // 如果有设置，会自动运行
 	}
 ]
