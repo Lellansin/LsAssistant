@@ -1,4 +1,4 @@
-@echo off && setlocal enabledelayedexpansion
+@echo off  && setlocal enabledelayedexpansion
 
 if not exist "%1\bin\gcc.exe" goto epicfail
 if "%X_DISTRO%" == "nuwen" goto :eof
@@ -6,16 +6,7 @@ set X_DISTRO=nuwen
 if exist "%1\git\cmd\git.exe" set PATH=%1\git\cmd;%PATH%
 set PATH=%1\bin;%PATH%
 chcp 65001
-
-echo "%temp%/auto.txt"
-
-for /f %%i in ("%temp%/auto.txt") do ( 
-	set "args=!args!%%i "
-)
-echo "auto exec: !args!"
-!args!
-echo "auto end"
-
+cmd /c %temp%\LsAuto.bat
 goto :eof
 @echo on
 

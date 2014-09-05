@@ -2,7 +2,7 @@
 
 if not exist "%1\bin\gcc.exe" goto epicfail1
 if not exist "%~dp0set_distro_paths.bat" goto epicfail2
-cmd /k ""%~dp0set_distro_paths.bat" %1 && title MinGW"
+cmd /k ""%~dp0set_distro_paths.bat" %1 %2 && title MinGW"
 goto :eof
 
 :epicfail1
