@@ -1,2 +1,6 @@
 @echo off
-gcc -v
+gcc -v && ( 
+	color 2f && echo -----------------------  && echo  version test success! && echo -----------------------
+) || (
+	color 4f && echo ------------------------ && echo  version test failed!  && echo ------------------------
+)
