@@ -1,8 +1,10 @@
 {
 	// 输入编译器启动脚本路径 (注意 '\' 字符需要转义成 '\\' 或者换成 '/')
-	"compiler_path" : "F:/gcc/MinGW/",
-	// 自动运行:
-	"auto_compile_run": "default",
-	// 文件后缀
+	"compiler_path" : "D:/gcc/MinGW/",
+	// 自动运行 ( true 开启 false 关闭)
+	"auto_compile_run": "true",
+	// 自动运行脚本路径 (脚本路径，不指定则使用插件内置)
+	"custom_run": "",
+	// 文件后缀 (非指定后缀不会运行自动脚本)
 	"file_ext": ".c"
 }
