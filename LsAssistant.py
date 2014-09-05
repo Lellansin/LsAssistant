@@ -1,9 +1,10 @@
-import sublime
-import sublime_plugin
-import os
-import os.path
+import sublime, sublime_plugin
+import os, os.path
 from shutil import copy
 
+TEMP_AUTO_RUN_BAT_NAME = 'LsAuto.bat'
+TEST_GCC_VERSION_PATH  = 'test_gcc_version.bat'
+RUN_GCC_AUTO = 'run_gcc_auto.bat'
 
 class LsOpenCmdCommand(sublime_plugin.TextCommand):
 
@@ -60,16 +61,23 @@ def getCompilerExec(exec_type, run_file):
 
     command = open_bat + ' '
 
-    if compiler_path and checkFileType(run_file, ext):
+    if compiler_path:
         command += compiler_path + ' '
-        if not exec_type:
-            if settings.get('auto_compile_run') == 'default':
+        if not exec_type and checkFileType(run_file, ext):
+            if settings.get('auto_compile_run') == 'true':
+                custom_run = settings.get('custom_run')
+                bat_to_run = custom_run
+                if not bat_to_run:
+                    custom_run = getAutoRunPath(bat_dir, RUN_GCC_AUTO)
                 print('prepare auto run')
-                autoRun(
-                    getAutoRunPath(bat_dir, 'run_gcc_auto.bat') + '\n' + run_file)
+                autoRun(custom_run + ' ' + run_file)
+            else:
+                autoRun('')
         elif (exec_type == 'test_gcc_version'):
             print('prepare auto run')
-            autoRun(getAutoRunPath(bat_dir, 'test_gcc_version.bat'))
+            autoRun(getAutoRunPath(bat_dir, TEST_GCC_VERSION_PATH))
+        else:
+            autoRun('')
         return command
     else:
         return 'cmd'
@@ -84,12 +92,8 @@ def getCurPath(path, platform):
 
 def getAutoRunPath(bat_dir, bat_name):
     tmp_dir = os.getenv('temp')
-    auto_bat = bat_dir + '\\' + bat_name
-    auto_bat_tmp = tmp_dir + '\\' + bat_name
-
-    if not os.path.exists(auto_bat_tmp):
-        copy(auto_bat, tmp_dir)
-    return auto_bat_tmp
+    auto_bat = '"' + bat_dir + '\\' + bat_name + '"'
+    return auto_bat
 
 
 def checkFileType(path, ext):
@@ -98,7 +102,8 @@ def checkFileType(path, ext):
 
 def autoRun(command):
     tmp_dir = os.getenv('temp')
-    fp = open(tmp_dir + '/auto.txt', 'w')
+    fp = open(tmp_dir + '/' + TEMP_AUTO_RUN_BAT_NAME, 'w')
     print('auto command:' + command)
+    fp.write('@echo off\n');
     fp.write(command);
     fp.close()
