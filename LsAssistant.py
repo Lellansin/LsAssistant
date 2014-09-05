@@ -17,7 +17,7 @@ class LsOpenCmdCommand(sublime_plugin.TextCommand):
             path = 'C:\\'
 
         if not path:
-            echo("没有办法打开当前路径的控制台, 请先确保你的文件已保存!")
+            echo("没有办法打开当前路径的控制台, 请先确保你的文件已保存")
             return
 
         if(platform == 'windows'):
