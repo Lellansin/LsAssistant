@@ -1,4 +1,4 @@
-@echo off  && setlocal enabledelayedexpansion
+@echo off
 
 if not exist "%1\bin\gcc.exe" goto epicfail
 if "%X_DISTRO%" == "nuwen" goto :eof
