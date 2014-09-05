@@ -1,11 +1,13 @@
 [
 	{
-		"keys": ["alt+l"],
-		"command": "ls_assistant"
+		"keys": ["alt+a"],
+		"command": "ls_assistant",
+		"args": {"amount": 1.0 }
 	},
 	{
 		"keys": ["ctrl+alt+o"],
-		"command": "ls_open_cmd"
+		"command": "ls_open_cmd",
+		"args": {"amount": 1.0 }
 	},
 	{
 		"keys": ["f5"],

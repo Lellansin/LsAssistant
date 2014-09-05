@@ -1,4 +1,8 @@
 {
 	// 输入编译器启动脚本路径 (注意 '\' 字符需要转义成 '\\' 或者换成 '/')
-	"compiler_path" : "D:/gcc/MinGW/open.bat"
+	"compiler_path" : "F:/gcc/MinGW/",
+	// 自动运行:
+	"auto_compile_run": "default",
+	// 文件后缀
+	"file_ext": ".c"
 }

@@ -24,7 +24,7 @@
                     {
                         "command": "open_file",
                         "args": {"file": "${packages}/LsAssistant/LsAssistant.sublime-settings"},
-                        "caption": "【功能】默认设置"
+                        "caption": "【功  能】  默认设置"
                     },
                     { "caption": "-" },
                     {
@@ -33,7 +33,7 @@
                             "file": "${packages}/LsAssistant/Default (OSX).sublime-keymap",
                             "platform": "OSX"
                         },
-                        "caption": "【快捷键】默认设置"
+                        "caption": "【快捷键】  默认设置"
                     },
                     {
                         "command": "open_file",
@@ -41,7 +41,7 @@
                             "file": "${packages}/LsAssistant/Default (Linux).sublime-keymap",
                             "platform": "Linux"
                         },
-                        "caption": "【快捷键】默认设置"
+                        "caption": "【快捷键】  默认设置"
                     },
                     {
                         "command": "open_file",
@@ -49,7 +49,7 @@
                             "file": "${packages}/LsAssistant/Default (Windows).sublime-keymap",
                             "platform": "Windows"
                         },
-                        "caption": "【快捷键】默认设置"
+                        "caption": "【快捷键】  默认设置"
                     },
                     {
                         "command": "open_file",
@@ -75,7 +75,14 @@
                         },
                         "caption": "【快捷键】自定义设置"
                     },
-                    { "caption": "-" }
+                    { "caption": "-" },
+                    {
+                        "command": "ls_open_cmd",
+                        "args": {
+                            "type": "test_gcc_version"
+                        },
+                        "caption": "GCC测试路径"
+                    }
                 ]
             }
         ]
