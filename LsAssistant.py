@@ -23,6 +23,8 @@ class LsOpenCmdCommand(sublime_plugin.TextCommand):
             echo("无法打开当前路径的控制台, 请先确保你的文件已保存")
             return
 
+        # path = getChineseCFile(path);
+
         if(platform == 'windows'):
             compiler_exec = getCompilerExec(exec_type, path, auto_flag)
             path = getCurPath(path, platform)
@@ -63,7 +65,7 @@ def getCompilerExec(exec_type, run_file, auto_flag):
 
     if (exec_type == 'test_gcc_version'):
         print('prepare run test')
-        autoRun(getAutoRunPath(bat_dir, TEST_GCC_VERSION_PATH))
+        tempRun(TEMP_AUTO_RUN_BAT_NAME, getAutoRunPath(bat_dir, TEST_GCC_VERSION_PATH))
         return command
 
     if compiler_path and checkFileType(run_file, ext):
@@ -74,9 +76,9 @@ def getCompilerExec(exec_type, run_file, auto_flag):
             if not bat_to_run:
                 custom_run = getAutoRunPath(bat_dir, RUN_GCC_AUTO)
             print('prepare auto run')
-            autoRun(custom_run + ' ' + run_file)
+            tempRun(TEMP_AUTO_RUN_BAT_NAME, custom_run + ' ' + run_file)
         else:
-            autoRun('')
+            tempRun(TEMP_AUTO_RUN_BAT_NAME, '')
         return command
     else:
         return 'cmd'
@@ -93,12 +95,34 @@ def getAutoRunPath(bat_dir, bat_name):
     return auto_bat
 
 def checkFileType(path, ext):
-    return (ext == path[path.rfind('.'):])
+    end = path[path.rfind('.'):]
+    return (ext == end or (ext + 'tmp') == end)
 
-def autoRun(command):
+def tempRun(file_name, command):
     tmp_dir = os.getenv('temp')
-    fp = open(tmp_dir + '/' + TEMP_AUTO_RUN_BAT_NAME, 'w')
+    fp = open(tmp_dir + '/' + file_name, 'w')
     print('auto command:' + command)
     fp.write('@echo off\n');
     fp.write(command);
     fp.close()
+
+def getChineseCFile(path):
+    settings = sublime.load_settings('LsAssistant.sublime-settings')
+    ext = settings.get('file_ext')
+    encoding = settings.get('file_encoding')
+    if encoding == 'utf8':
+        return path
+    if not checkFileType(path, ext):
+        return path
+    text = open(path).read()
+    tmp_file = path[:path.rfind('.')] + ".tmp" + path[path.rfind('.'):]
+    f = open(tmp_file, 'w')
+    print('----------------------------------')
+    print(text.encode('utf8'))
+    print('----------------------------------')
+    s = text.encode('utf8').decode(encoding)
+    f.write(s)
+    f.close()
+    return tmp_file
+
+# todo 生成一个 gbk 缓存文件，编译这个缓存文件
