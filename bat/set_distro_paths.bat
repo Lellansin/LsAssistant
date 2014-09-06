@@ -5,10 +5,9 @@ if "%X_DISTRO%" == "nuwen" goto :eof
 set X_DISTRO=nuwen
 if exist "%1\git\cmd\git.exe" set PATH=%1\git\cmd;%PATH%
 set PATH=%1\bin;%PATH%
-chcp 65001
-cmd /c %temp%\LsAuto.bat
+cls
+cmd /c "%temp%\LsAuto.bat"
 goto :eof
-@echo on
 
 :epicfail
 color 4f
